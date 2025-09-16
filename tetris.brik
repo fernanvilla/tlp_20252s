@@ -1,0 +1,178 @@
+# Archivo de configuracion para el juego de Tetris
+# Desarrollado por Nadie Team
+# Este es un ejemplo, esta sintaxis es ilustrativa, y acá solo aparecen los requerimientos base
+
+# ==================================
+# PARAMETROS GENERALES DEL JUEGO
+# ==================================
+nombre_juego = "Tetris Clasico"
+version = "1.0"
+
+# Dimensiones del tablero: ancho y alto
+dimensiones_tablero = [10, 20]
+
+# Velocidad de caida de las piezas (en bloques por segundo)
+velocidad_inicial = 1.0
+
+# ==================================
+# REGLAS DEL JUEGO
+# ==================================
+
+# Regla para el comportamiento al completar una linea
+regla_puntuacion_lineas = {
+    evento = "linea_completada"
+    accion = "eliminar_fila"
+    puntuacion_base = 100
+    # Opcional: Multiplicador de puntuacion por multiples lineas
+    multiplicador_por_linea = [1, 3, 5, 8]
+}
+
+# Regla para la ficha explosiva
+regla_bomba_ladrillo = {
+    tipo_pieza = "bomba"
+    color = "rojo_especial"
+    radio_destruccion = 2
+    tiempo_explosion = 5
+}
+
+# Regla para la aparicion aleatoria de piezas
+regla_aparicion_piezas = {
+    aparicion_aleatoria = "si"
+    probabilidad_bomba = 0.05
+}
+
+# Regla para el aumento de velocidad con los niveles
+regla_niveles_velocidad = {
+    aumento_velocidad = "si"
+    puntos_por_nivel = 1000
+    multiplicador_velocidad = 1.2
+}
+
+# Regla de finalizacion del juego
+# El juego termina cuando una pieza no puede ser colocada debido a que el tope del tablero está ocupado.
+regla_fin_juego = {
+    condicion = "pieza_alcanza_tope"
+}
+
+# ==================================
+# CONTROLES DEL JUEGO
+# ==================================
+# Se definen las acciones y la tecla que las ejecuta
+controles = {
+    # Movimiento horizontal de la pieza
+    mover_izquierda = "a"
+    mover_derecha = "d"
+    
+    # Control de caida de la pieza
+    acelerar_abajo = "s"
+    evitar_caida = "w"
+    
+    # Controles de estado del juego
+    pausar = "p"
+    reiniciar = "r"
+}
+
+
+# ==================================
+# DEFINICION DE LAS PIEZAS
+# ==================================
+# (Las definiciones de las figuras I, O, T, L, J, S, Z y la bomba se mantienen igual)
+# ... [Figuras] ...
+# Figura I (color cian)
+figura_I = {
+    color = "cian"
+    rotaciones = [
+        # Rotacion 0 y 180 (horizontal)
+        [ [0, 0, 0, 0], [1, 1, 1, 1], [0, 0, 0, 0], [0, 0, 0, 0] ],
+        # Rotacion 90 y 270 (vertical)
+        [ [0, 1, 0, 0], [0, 1, 0, 0], [0, 1, 0, 0], [0, 1, 0, 0] ]
+    ]
+}
+
+# Figura O (color amarillo)
+figura_O = {
+    color = "amarillo"
+    rotaciones = [
+        # La pieza O no cambia al rotar
+        [ [1, 1], [1, 1] ]
+    ]
+}
+
+# Figura T (color magenta)
+figura_T = {
+    color = "magenta"
+    rotaciones = [
+        # Rotacion 0
+        [ [0, 1, 0], [1, 1, 1], [0, 0, 0] ],
+        # Rotacion 90
+        [ [0, 1, 0], [0, 1, 1], [0, 1, 0] ],
+        # Rotacion 180
+        [ [0, 0, 0], [1, 1, 1], [0, 1, 0] ],
+        # Rotacion 270
+        [ [0, 1, 0], [1, 1, 0], [0, 1, 0] ]
+    ]
+}
+
+# Figura L (color naranja)
+figura_L = {
+    color = "naranja"
+    rotaciones = [
+        # Rotacion 0
+        [ [0, 0, 1], [1, 1, 1], [0, 0, 0] ],
+        # Rotacion 90
+        [ [0, 1, 0], [0, 1, 0], [0, 1, 1] ],
+        # Rotacion 180
+        [ [0, 0, 0], [1, 1, 1], [1, 0, 0] ],
+        # Rotacion 270
+        [ [1, 1, 0], [0, 1, 0], [0, 1, 0] ]
+    ]
+}
+
+# Figura J (color azul)
+figura_J = {
+    color = "azul"
+    rotaciones = [
+        # Rotacion 0
+        [ [1, 0, 0], [1, 1, 1], [0, 0, 0] ],
+        # Rotacion 90
+        [ [0, 1, 1], [0, 1, 0], [0, 1, 0] ],
+        # Rotacion 180
+        [ [0, 0, 0], [1, 1, 1], [0, 0, 1] ],
+        # Rotacion 270
+        [ [0, 1, 0], [0, 1, 0], [1, 1, 0] ]
+    ]
+}
+
+# Figura S (color verde)
+figura_S = {
+    color = "verde"
+    rotaciones = [
+        # Rotacion 0 y 180
+        [ [0, 1, 1], [1, 1, 0], [0, 0, 0] ],
+        # Rotacion 90 y 270
+        [ [0, 1, 0], [0, 1, 1], [0, 0, 1] ]
+    ]
+}
+
+# Figura Z (color rojo)
+figura_Z = {
+    color = "rojo"
+    rotaciones = [
+        # Rotacion 0 y 180
+        [ [1, 1, 0], [0, 1, 1], [0, 0, 0] ],
+        # Rotacion 90 y 270
+        [ [0, 0, 1], [0, 1, 1], [0, 1, 0] ]
+    ]
+}
+
+# Figura para la bomba, que es un solo ladrillo.
+# Para evitar errores en la lógica de rotación, definimos una sola rotación.
+figura_bomba = {
+    color = "rojo_especial"
+    rotaciones = [
+        [ [1] ]
+    ]
+}
+
+# Lista de todas las figuras que el juego puede usar
+figuras_disponibles = [figura_I, figura_O, figura_T, figura_L, figura_J, figura_S, figura_Z, figura_bomba]
