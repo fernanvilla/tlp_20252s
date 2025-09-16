@@ -175,4 +175,5 @@ figura_bomba = {
 }
 
 # Lista de todas las figuras que el juego puede usar
-figuras_disponibles = [figura_I, figura_O, figura_T, figura_L, figura_J, figura_S, figura_Z, figura_bomba]
+figuras_disponibles = [figura_I, figura_O, figura_T, figura_L, figura_J, 
+figura_S, figura_Z, figura_bomba]
