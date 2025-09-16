@@ -1,0 +1,65 @@
+Proyecto: Motor de Juegos de Ladrillos
+Este proyecto práctico consiste en la construcción de un motor de juegos que interpreta y ejecuta juegos definidos por un lenguaje de programación diseñado por ustedes. El proyecto se realizará en equipos de hasta 3 personas y debe cumplir con las siguientes restricciones de hardware:
+
+Compacto: El ejecutable y los archivos del juego deben caber en un disquete de 1.44 MB.
+Hardware antiguo: El motor debe ser compatible con un sistema operativo Windows XP y un procesador AMD Athlon XP.
+
+Entrega 1: El Analizador de Lenguaje y la Tabla de Símbolos
+Esta primera fase se centra en el análisis del lenguaje y la abstracción. El objetivo es que los equipos definan un lenguaje de programación para describir las reglas de un juego de ladrillos y construyan un programa que pueda leer, entender y almacenar esa información.
+
+1.1. Tareas Clave
+Definición del Lenguaje:Diseñen la sintaxis de su lenguaje. Piensen en qué elementos necesitan para describir un juego: colores de los ladrillos, velocidad de caída, puntuación por línea, etc.
+Definan la gramática de su lenguaje de forma clara. Por ejemplo, color_ladrillo = "rojo", velocidad = 100, etc.
+
+1.2. Análisis Léxico (Lexer Version 1):
+Escriban un programa que lea el archivo de texto que contiene las reglas del juego.
+Este programa debe identificar y clasificar las "palabras" o tokens del lenguaje, como palabras clave (color, velocidad), identificadores (ladrillo_rojo), números (100), y operadores (=). Un token es la unidad más pequeña con significado en un programa.
+
+1.3. Análisis Sintáctico (Parser Version 1):
+El parser recibirá los tokens del lexer. Su trabajo es verificar que la secuencia de tokens cumpla con la gramática que definieron.
+Si la sintaxis es correcta, el parser construirá una estructura de datos para representar el juego. Pueden usar un Árbol de Sintaxis Abstracta (AST) para una representación más formal, o simplemente un diccionario anidado en Python para una implementación más sencilla. Esta estructura de datos será la "receta" del juego.
+Si la sintaxis es incorrecta, el programa debe mostrar un mensaje de error claro y útil indicando dónde se encuentra el problema.
+
+1.4. Tabla de Símbolos:
+Durante el análisis, el programa debe construir una tabla de símbolos. Esta es una estructura de datos que almacena información sobre los elementos del juego.
+Por ejemplo, si el archivo de juego tiene la línea velocidad = 100, la tabla de símbolos podría guardar una entrada que asocie el identificador velocidad con el valor 100. Esta tabla es crucial porque será la fuente de información para el motor de juego en la siguiente entrega.
+
+1.5. Entregable
+* Documentación Técnica: Un documento que defina su lenguaje de programación, incluyendo la sintaxis y una explicación de cada comando.
+* Código Fuente y Programa Ejecutable: El programa que realiza el análisis léxico y sintáctico. Debe poder ejecutarse en la máquina con las restricciones, procesar al menos dos archivos de juego de ejemplo (tetris.brik y snake.brik) y, si hay errores de sintaxis, reportarlos correctamente.
+
+Entrega 2: El Motor Gráfico y de Juego 🖥️
+Esta fase se enfoca en el hardware y la implementación a bajo nivel. El objetivo es crear un motor de juego que pueda renderizar gráficos y manejar la lógica básica, sin saber nada específico sobre los juegos que ejecutará.
+
+2.1. Tareas Clave
+Configuración del Motor:
+Inicialicen un entorno gráfico. El motor debe crear una ventana con una resolución de 640x480 píxeles.
+Bucle Principal (Game Loop):
+Implementen el bucle de juego principal. Este es el corazón del motor, un ciclo infinito que realiza tres tareas principales en cada "frame":
+Gestión de eventos: Leer las entradas del usuario (ej., teclado).
+Actualizaciones lógicas: Mover objetos, verificar colisiones, etc.
+Renderizado: Dibujar los gráficos en la pantalla.
+Funciones Gráficas Básicas:
+Desarrollen funciones para dibujar los elementos del juego. Por ejemplo:
+dibujar_ladrillo(x, y, color): Una función que dibuja un bloque en las coordenadas (x, y) con el color especificado.
+dibujar_texto(x, y, texto): Para mostrar la puntuación, mensajes de juego, etc.
+Control de Entradas:
+Creen un módulo para gestionar las pulsaciones de teclas. El motor debe ser capaz de detectar si el usuario presiona una tecla (por ejemplo, arriba, abajo, izquierda, derecha) para mover los ladrillos.
+
+2.2. Entregable
+Documentación Técnica: Descripción del diseño del motor de juego y sus funciones.
+Código Fuente y Programa Ejecutable: El motor de juego que se ejecute en la máquina con las restricciones. Para la demostración, el motor debe ser capaz de mostrar un ladrillo en la pantalla y permitir al usuario moverlo con las teclas, confirmando que el control de entrada funciona.
+
+Entrega 3: Integración y Lógica del Juego
+Esta es la fase de abstracción metalingüística, donde las dos entregas anteriores se unen. El objetivo es que el motor de la Entrega 2 utilice la información del analizador de la Entrega 1 para ejecutar la lógica de los juegos, sin que esta lógica esté codificada directamente en el motor.
+
+3.1. Tareas Clave
+Integración: Modifiquen el motor de la Entrega 2 para que, en lugar de usar valores codificados (como la velocidad o el color), lea el archivo de juego y utilice la tabla de símbolos generada por el analizador de la Entrega 1.
+Motor de Reglas: Implementen la lógica del juego. El bucle principal del motor debe leer los valores de la tabla de símbolos y aplicarlos. Por ejemplo, si la tabla de símbolos indica que la gravedad es 1, el motor debe actualizar la posición de la pieza para que caiga un bloque por segundo. La clave es que el motor interprete las reglas del juego, no que las tenga "cableadas" en el código.
+Creación de Contenido: Cada equipo debe crear al menos dos juegos completos (tetris.brik y snake.brik) utilizando su lenguaje. Estos archivos de texto son la "prueba de fuego" de que su lenguaje es lo suficientemente expresivo y que su motor puede interpretarlo correctamente.
+
+3.2. Entregable
+Documentación Técnica: Actualización de la documentación para reflejar la integración.
+Código Fuente y Programa Ejecutable: El programa final, el motor de juegos, que al ser ejecutado permita seleccionar y jugar los dos juegos de ejemplo. El éxito de la prueba es que ambos juegos se ejecuten correctamente sin necesidad de cambiar el código del motor, demostrando que la lógica está en el archivo de texto.
+
+Este proyecto no solo pondrá a prueba su conocimiento sobre la teoría de lenguajes, sino que también los desafiará en el desarrollo de software bajo restricciones reales de hardware. Es una excelente oportunidad para aplicar conceptos como el diseño de lenguajes, el análisis sintáctico y la abstracción.
