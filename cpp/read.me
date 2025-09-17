@@ -1,0 +1,16 @@
+Primero Instala el MinGw https://sourceforge.net/projects/mingw/
+Dependiendo del Sistema Operativo
+
+Ten cuidado con cual version de C++ la implementacion c++17 es diferente de c++14
+c++ 14 es pensada para WinXP
+
+En el caso de v17 es decir para C++17 para compilar y crear el ejecutable con las DLL incluidas para windows
+
+C:\MinGW\bin>g++ c:\tetris\main_v17.cpp -o c:\tetris\analizador.exe -static
+
+La carpeta c:\tetris\ contiene main_v17.cpp y el archivo tetris.brik
+
+Para ejecutar el analizador
+c:\tetris>analizador.exe
+
+En el caso de c++14 pueden usar https://onecompiler.com/cpp/ o descargarse un compilador adecuado.
